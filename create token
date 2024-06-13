@@ -1,0 +1,45 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+// write a smart contract to create your own ERC20 token
+
+// Importing the ERC20 standard implementation from OpenZeppelin library
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.0.0/contracts/token/ERC20/ERC20.sol";
+
+
+// Declaring the SportsToken contract that inherits from the ERC20 contract
+contract SportsToken is ERC20("SportsToken", "ST") {
+
+    // State variable to store the address of the contract owner
+    address public owner;
+
+    // Constructor that runs when the contract is deployed
+    constructor(uint256 initialSupply)  {
+
+        // Setting the owner to the address that deploys the contract
+        owner = msg.sender;
+
+        // Minting the initial supply of tokens to the owner's address
+        _mint(owner, initialSupply);
+    }
+
+    // Function to mint new tokens, can only be called by the owner
+    function mint(address to, uint256 amount) public {
+
+        // Check that the function caller is the owner
+        require(msg.sender == owner, "Only the owner has the access to mint tokens");
+
+        // Mint the specified amount of tokens to the given address
+        _mint(to, amount);
+    }
+
+    // Function to burn tokens, can only be called by the owner
+    function burn(uint256 amount) public {
+
+        // Check that the function caller is the owner
+        require(msg.sender == owner, "Only the owner has the access to burn tokens");
+
+        // Burn the specified amount of tokens from the owner's balance
+        _burn(owner, amount);
+    }
+}
