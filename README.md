@@ -1,12 +1,13 @@
 # SportsToken ERC20 Smart Contract
 SportsToken is an ERC20 token contract built using the OpenZeppelin library. It includes basic ERC20 functionality with additional features for minting and burning tokens. Only the owner (the deployer) has the authority to mint new tokens and burn tokens from their balance.
+![image](https://github.com/gurleenkaur0703/Token_ERC20/assets/170515862/ff3ff6a7-fb11-408f-bd16-a033622dd2f0)
 
 ## Contract Description:
 
 ### Contract Details
 
 #### • Token Name: SportsToken
-#### • Token Symbol: ST
+#### • Token Symbol: STK
 #### • Decimals: 18 (default for ERC20 tokens)
 #### • Initial Supply: Specified during deployment
 
