@@ -43,45 +43,27 @@ Calls the _burn function to burn the specified amount of tokens from the owner's
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-// Import the ERC20 contract from OpenZeppelin library
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-// Import the Ownable contract from OpenZeppelin library
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-// Define the SportsToken contract that inherits from the ERC20 contract
 contract SportsToken is ERC20 {
-    // Declare a public state variable to store the owner's address
     address public owner;
 
-    // Constructor that runs when the contract is deployed
     constructor(uint256 initialSupply) ERC20("SportsToken", "STK") {
-        // Set the contract deployer as the owner
         owner = msg.sender;
-        // Mint the initial supply of tokens to the owner's address
         _mint(msg.sender, initialSupply);
     }
-
-    // Modifier to restrict access to owner-only functions
     modifier onlyOwner() {
-        // Check if the function caller is the owner
         require(msg.sender == owner, "Only Owner Can Access");
-        // Continue execution if the require statement is true
         _;
     }
-
-    // Function to mint new tokens, only callable by the owner
     function mint(address to, uint256 amount) public onlyOwner {
-        // Mint the specified amount of tokens to the provided address
         _mint(to, amount);
     }
-
-    // Function to burn tokens from the caller's address
     function burn(uint256 amount) public onlyOwner{
-        // Burn the specified amount of tokens from the caller's balance
         _burn(msg.sender, amount);
     }
 }
-
 ```
 
 • Compile the Contract by selecting the appropriate compiler version (0.8.0 or above).
