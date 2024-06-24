@@ -1,6 +1,6 @@
 # SportsToken ERC20 Smart Contract
 SportsToken is an ERC20 token contract built using the OpenZeppelin library. It includes basic ERC20 functionality with additional features for minting and burning tokens. Only the owner (the deployer) has the authority to mint new tokens and burn tokens from their balance.
-![image](https://github.com/gurleenkaur0703/Token_ERC20/assets/170515862/ff3ff6a7-fb11-408f-bd16-a033622dd2f0)
+
 
 ## Contract Description:
 
@@ -20,6 +20,10 @@ The constructor function initializes the owner variable with the address of the 
 Mints the initial supply of tokens to the owner's address using the _mint function provided by the OpenZeppelin ERC20 contract.
 
 ### Functions
+#### •	transfer(address to, uint256 amount)
+Overrides the transfer function from ERC20.
+Calls the transfer function from ERC20 to perform the token transfer. 
+It ensures that token transfers are executed following the standard ERC20 specifications.
 #### •	mint(address to, uint256 amount)
 A public function that allows the owner to mint new tokens.
 Uses require to ensure that only the owner can call this function
@@ -57,6 +61,9 @@ contract SportsToken is ERC20 {
     modifier onlyOwner() {
         require(msg.sender == owner, "Only Owner Can Access");
         _;
+    }
+function transfer(address to, uint256 amount) public override returns (bool) {
+        return ERC20.transfer(to, amount);
     }
     function mint(address to, uint256 amount) public onlyOwner {
         _mint(to, amount);
